@@ -11,6 +11,7 @@ namespace IoT_PaymentEmulator
         public static int IdUser { get; set; }
         public static string FirstName { get; set; }
         public static string LastName { get; set; }
+        public static int BonusScore { get; set; }
         public static string Token { get; set; }
     }
 }
