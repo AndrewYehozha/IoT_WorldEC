@@ -20,6 +20,22 @@ namespace IoT_PaymentEmulator
         private void LoginButton_Click(object sender, EventArgs e)
         {
             Data data = new Data();
+
         }
+
+        //private async void postIndicators(string indicator)
+        //{
+        //    try
+        //    {
+        //        using (HttpClient client = new HttpClient())
+        //        {
+        //            await client.PostAsync(
+        //                "https://mymedicalfridgeserver.azurewebsites.net/api/Indicators/",
+        //                new StringContent(indicator, Encoding.UTF8, "application/json")
+        //                );
+        //        }
+        //    }
+        //    catch (Exception ex) { Console.WriteLine(ex.Message); }
+        //}
     }
 }
