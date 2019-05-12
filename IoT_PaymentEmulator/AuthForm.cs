@@ -36,37 +36,31 @@ namespace IoT_PaymentEmulator
         {
             try
             {
-                using (HttpClient client = new HttpClient())
+                var responseString = await "http://localhost:60436/api/Auth/AuthIOT/".PostUrlEncodedAsync(model).ReceiveString();
+
+                var success = JsonConvert.DeserializeObject<AuthorizationResponse>(responseString);
+                if (success.Success)
                 {
-                    var responseString = await "http://localhost:60436/api/Auth/AuthIOT/".PostUrlEncodedAsync(model).ReceiveString();
-
-                    var success = JsonConvert.DeserializeObject<AuthorizationResponse>(responseString);
-                    if (success.Success)
-                    {
-                        Data.Token = success.data.Token;
-                        return true;
-                    }
-
-                    var error = JsonConvert.DeserializeObject<ErrorMessage>(responseString);
-                    if (error.ErrorNum == 400)
-                    {
-                        ErrorEmailLabel.Text = error.ErrorMessages;
-                        ErrorEmailLabel.Visible = true;
-                    }
-                    else
-                    {
-                        ErrorEmailLabel.Visible = false;
-                        ErrorPasswordLabel.Text = error.ErrorMessages;
-                        ErrorPasswordLabel.Visible = true;
-                    }
-
-                    return false;
+                    Data.Token = success.data.Token;
+                    return true;
                 }
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+
+                var error = JsonConvert.DeserializeObject<ErrorMessage>(responseString);
+                if (error.ErrorNum == 400)
+                {
+                    ErrorEmailLabel.Text = error.ErrorMessages;
+                    ErrorEmailLabel.Visible = true;
+                }
+                else
+                {
+                    ErrorEmailLabel.Visible = false;
+                    ErrorPasswordLabel.Text = error.ErrorMessages;
+                    ErrorPasswordLabel.Visible = true;
+                }
+
                 return false;
             }
+            catch { return false; }
         }
     }
 }

@@ -69,8 +69,13 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Request\AuthorizationRequest.cs" />
+    <Compile Include="Models\Request\PaymentRequest.cs" />
     <Compile Include="Models\Response\AuthorizationResponse.cs" />
+    <Compile Include="Models\Response\Entert_CenterResponse.cs" />
     <Compile Include="Models\Response\ErrorMessage.cs" />
+    <Compile Include="Models\Response\ServicesResponse.cs" />
+    <Compile Include="Models\Response\SuccsessResponse.cs" />
+    <Compile Include="Models\Response\UserResponse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AuthForm.resx">

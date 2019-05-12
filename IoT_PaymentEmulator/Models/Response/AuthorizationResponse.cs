@@ -9,10 +9,10 @@ namespace IoT_PaymentEmulator.Models.Request
     class AuthorizationResponse
     {
         public bool Success { get; set; }
-        public Data data { get; set; }
+        public DataAuth data { get; set; }
     }
 
-    class Data
+    class DataAuth
     {
         public string Token { get; set; }
     }
