@@ -352,11 +352,11 @@
             this.DescriptionTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.DescriptionTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.DescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DescriptionTextBox.Location = new System.Drawing.Point(410, 181);
+            this.DescriptionTextBox.Location = new System.Drawing.Point(390, 181);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.ReadOnly = true;
-            this.DescriptionTextBox.Size = new System.Drawing.Size(420, 115);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(440, 115);
             this.DescriptionTextBox.TabIndex = 31;
             // 
             // PayButton
@@ -368,7 +368,7 @@
             this.PayButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
             this.PayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PayButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PayButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.PayButton.ForeColor = System.Drawing.Color.White;
             this.PayButton.Location = new System.Drawing.Point(358, 333);
             this.PayButton.Name = "PayButton";
             this.PayButton.Size = new System.Drawing.Size(125, 32);
