@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Flurl.Http;
+using IoT_PaymentEmulator.Models.Request;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +24,28 @@ namespace IoT_PaymentEmulator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            AuthForm authForm = new AuthForm();
+            authForm.ShowDialog();
+
+            if(String.IsNullOrEmpty(Data.Token))
+            {
+                this.Close();
+            }
+
+            LoadInfoUser();
+            LoadInfoEC();
+        }
+
+        private async void LoadInfoEC()
+        {
+            var responseString = await "http://localhost:60436/api/Auth/AuthIOT/".GetStringAsync();
+            var success = JsonConvert.DeserializeObject<AuthorizationResponse>(responseString);
+        }
+
+        private async void LoadInfoUser()
+        {
+            var responseString = await "http://localhost:60436/api/Auth/AuthIOT/".GetStringAsync();
+            var success = JsonConvert.DeserializeObject<AuthorizationResponse>(responseString);
 
         }
 
