@@ -70,6 +70,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.BlockedCheckBox = new System.Windows.Forms.CheckBox();
             this.ErrorPayLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,7 +80,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(666, 10);
+            this.label1.Location = new System.Drawing.Point(681, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 20);
             this.label1.TabIndex = 0;
@@ -91,9 +92,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(681, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 16);
+            this.label2.Size = new System.Drawing.Size(98, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Bonus Score:";
+            this.label2.Text = "Bonus score:";
             // 
             // label3
             // 
@@ -449,6 +450,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Lavender;
+            this.panel5.Controls.Add(this.button1);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Location = new System.Drawing.Point(-1, 0);
             this.panel5.Name = "panel5";
@@ -519,6 +521,21 @@
             this.ErrorPayLabel.TabIndex = 1006;
             this.ErrorPayLabel.Text = "ErrorPay";
             this.ErrorPayLabel.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Maroon;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(16, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 28);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form1
             // 
@@ -624,6 +641,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox BlockedCheckBox;
         private System.Windows.Forms.Label ErrorPayLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 

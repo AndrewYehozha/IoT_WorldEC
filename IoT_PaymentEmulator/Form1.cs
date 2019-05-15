@@ -44,7 +44,7 @@ namespace IoT_PaymentEmulator
         {
             try
             {
-                var responseString = await "http://localhost:60436/api/Users/GetUsers/".WithHeader("Authorization", Data.Token).GetStringAsync();
+                var responseString = await (Data.URL + "Users/GetUsers/").WithHeader("Authorization", Data.Token).GetStringAsync();
                 userSuccsess = JsonConvert.DeserializeObject<UserResponse>(responseString);
 
                 var comboUserSource = new Dictionary<int, string>();
@@ -80,7 +80,7 @@ namespace IoT_PaymentEmulator
         {
             try
             {
-                var responseString = await "http://localhost:60436/api/Entertainment_Centers/GetEntertainment_Centers/".WithHeader("Authorization", Data.Token).GetStringAsync();
+                var responseString = await (Data.URL + "Entertainment_Centers/GetEntertainment_Centers/").WithHeader("Authorization", Data.Token).GetStringAsync();
                 ecSuccsess = JsonConvert.DeserializeObject<Entert_CenterResponse>(responseString);
 
                 var comboECSource = new Dictionary<int, string>();
@@ -116,7 +116,7 @@ namespace IoT_PaymentEmulator
         {
             try
             {
-                var responseString = await ("http://localhost:60436/api/Services/GetServiceByECenterId/" + idEC).WithHeader("Authorization", Data.Token).GetStringAsync();
+                var responseString = await (Data.URL + "Services/GetServiceByECenterId/" + idEC).WithHeader("Authorization", Data.Token).GetStringAsync();
                 servicesSuccsess = JsonConvert.DeserializeObject<ServicesResponse>(responseString);
 
                 var comboServiceSource = new Dictionary<int, string>();
@@ -196,46 +196,43 @@ namespace IoT_PaymentEmulator
                     IsBonusPayment = BonusScoreCheckBox.Checked
                 };
 
-                //await Payment(model);
+                bool checkPayment = await Payment(model);
+
+                if (checkPayment)
+                {
+                    await LoadInfoUser();
+                    MessageBox.Show("Payment was successful.");
+                }
             }
         }
 
-        //private async Task<bool> Payment(PaymentRequest model)
-        //{
-        //    try
-        //    {
-        //        var responseString = await "http://localhost:60436/api/Payments/AddPayment/".PostUrlEncodedAsync(model).ReceiveString();
+        private async Task<bool> Payment(PaymentRequest model)
+        {
+            try
+            {
+                var responseString = await (Data.URL + "Payments/AddPayment/").WithHeader("Authorization", Data.Token).PostUrlEncodedAsync(model).ReceiveString();
 
-        //        var success = JsonConvert.DeserializeObject<AuthorizationResponse>(responseString);
-        //        if (success.Success)
-        //        {
-        //            Data.Token = success.data.Token;
-        //            return true;
-        //        }
+                var success = JsonConvert.DeserializeObject<SuccsessResponse>(responseString);
+                if (!success.Success)
+                {
+                    var error = JsonConvert.DeserializeObject<ErrorMessage>(responseString);
 
-        //        var error = JsonConvert.DeserializeObject<ErrorMessage>(responseString);
-        //        if (error.ErrorNum == 400)
-        //        {
-        //            ErrorEmailLabel.Text = error.ErrorMessages;
-        //            ErrorEmailLabel.Visible = true;
-        //        }
-        //        else
-        //        {
-        //            ErrorEmailLabel.Visible = false;
-        //            ErrorPasswordLabel.Text = error.ErrorMessages;
-        //            ErrorPasswordLabel.Visible = true;
-        //        }
+                    ErrorPayLabel.Text = error.ErrorMessages;
+                    ErrorPayLabel.Visible = true;
 
-        //        return false;
-        //    }
-        //    catch { return false; }
-        //}
+                    return false;
+                }
+
+                return true;
+            }
+            catch { return false; }
+        }
 
         private bool CheckComboBoxSelect()
         {
             ErrorPayLabel.Visible = false;
 
-            if ((ServiceComboBox.Items.Count == 0) || (UserComboBox.Items.Count == 0) || (ECComboBox.Items.Count == 0) || (!BlockedCheckBox.Checked))
+            if ((ServiceComboBox.Items.Count == 0) || (UserComboBox.Items.Count == 0) || (ECComboBox.Items.Count == 0) || (BlockedCheckBox.Checked))
             {
                 if (UserComboBox.Items.Count == 0)
                 {
@@ -271,6 +268,12 @@ namespace IoT_PaymentEmulator
         {
             await LoadECField(Convert.ToInt32(((ComboBox)sender).SelectedValue));
             await LoadInfoService(Convert.ToInt32(((ComboBox)sender).SelectedValue));
+        }
+
+        private async void Button1_Click(object sender, EventArgs e)
+        {
+            await LoadInfoUser();
+            await LoadInfoEC();
         }
     }
 }

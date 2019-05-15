@@ -18,7 +18,6 @@ namespace IoT_PaymentEmulator
 
         private async void LoginButton_Click(object sender, EventArgs e)
         {
-
             var model = new AuthorizationRequest
             {
                 Email = EmailTextBox.Text,
@@ -36,7 +35,7 @@ namespace IoT_PaymentEmulator
         {
             try
             {
-                var responseString = await "http://localhost:60436/api/Auth/AuthIOT/".PostUrlEncodedAsync(model).ReceiveString();
+                var responseString = await (Data.URL + "Auth/AuthIOT/").PostUrlEncodedAsync(model).ReceiveString();
 
                 var success = JsonConvert.DeserializeObject<AuthorizationResponse>(responseString);
                 if (success.Success)
