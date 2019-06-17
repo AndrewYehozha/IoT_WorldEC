@@ -8,9 +8,11 @@ namespace IoT_PaymentEmulator
 {
     class Data
     {
-        public static int IdUser { get; set; }
-        public static string FirstName { get; set; }
-        public static string LastName { get; set; }
+        public static string URL = "https://webapplicationec.azurewebsites.net/api/";
+        public static int UserId { get; set; }
+        public static int Entert_CenterId { get; set; }
+        public static int ServiceId { get; set; }
+        public static decimal Cost { get; set; }
         public static string Token { get; set; }
     }
 }
